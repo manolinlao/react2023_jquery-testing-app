@@ -1,4 +1,3 @@
-import { Dotdotdot } from './components/Dotdotdot';
 import { MyComponent } from './pages/MyComponent';
 import { findDOMNode } from 'react-dom';
 import $ from 'jquery';
@@ -22,7 +21,6 @@ function App({ context }: any) {
   return (
     <div className='App'>
       <h4>Testing app</h4>
-      <Dotdotdot text='text to test' />
       <hr />
       <MyComponent />
       <hr />
