@@ -1,24 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Dotdotdot } from './components/Dotdotdot';
+import { MyComponent } from './pages/MyComponent';
+import { findDOMNode } from 'react-dom';
+import $ from 'jquery';
+import 'jquery-ui-dist/jquery-ui';
+import { useEffect, useRef } from 'react';
 
-function App() {
+function App({ context }: any) {
+  const toggleRef = useRef(null);
+
+  const handleToggle = () => {
+    const el = findDOMNode(toggleRef.current);
+    $(el!).slideToggle();
+  };
+
+  useEffect(() => {
+    //const el = findDOMNode('#datePicker');
+    //$(el!).slideToggle();
+    $('#datePicker').datepicker();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h4>Testing app</h4>
+      <Dotdotdot text='text to test' />
+      <hr />
+      <MyComponent />
+      <hr />
+      <div ref={toggleRef}>toggle div</div>
+      <button onClick={handleToggle}>show/hide</button>
+      {/* needed: install jquery y jquery-ui-dist */}
+      <div>
+        Date: <input type='text' id='datePicker' />
+      </div>
     </div>
   );
 }
